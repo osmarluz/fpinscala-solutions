@@ -39,7 +39,7 @@ class ListTestSuite extends FunSuite {
     assert(List.drop(Nil, 0) == Nil)
   }
 
-  test("returns Nil when the input list is Nil") {
+  test("returns Nil when the input list in drop is Nil") {
     assert(List.drop(Nil, 1) == Nil)
   }
 
@@ -49,5 +49,16 @@ class ListTestSuite extends FunSuite {
 
   test("returns a list with the n first elements dropped") {
     assert(List.drop(List(1, 2, 3, 4), 2) == List(3, 4))
+  }
+
+  //Exercise 3.5
+
+  test("returns Nil when the input list in dropWhile is Nil") {
+    assert(List.dropWhile(Nil, (a: Int) => a < 5) == Nil)
+  }
+
+  test("returns a list that matches the input predicate") {
+    assert(List.dropWhile(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), (a: Int) => a < 5) == List(5, 6, 7, 8, 9, 10))
+    assert(List.dropWhile(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), (a: Int) => a > 5) == List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
   }
 }
