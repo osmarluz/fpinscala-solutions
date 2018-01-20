@@ -26,4 +26,28 @@ class ListTestSuite extends FunSuite {
   test("returns a list with the head replaced for a non-empty input list") {
     assert(List.setHead(8, List(1, 2, 3, 4)) == List(8, 2, 3, 4))
   }
+
+  //Exercise 3.4
+
+  test("returns the list on the input when the number of elements to drop is < 0") {
+    assert(List.drop(List(1, 2, 3, 4), -1) == List(1, 2, 3, 4))
+    assert(List.drop(Nil, -1) == Nil)
+  }
+
+  test("returns the list on the input when the number of elements to drop is = 0") {
+    assert(List.drop(List(1, 2, 3, 4), 0) == List(1, 2, 3, 4))
+    assert(List.drop(Nil, 0) == Nil)
+  }
+
+  test("returns Nil when the input list is Nil") {
+    assert(List.drop(Nil, 1) == Nil)
+  }
+
+  test("returns Nil when the the number of elements to drop is > than the input list size") {
+    assert(List.drop(List(1, 2, 3, 4), 5) == Nil)
+  }
+
+  test("returns a list with the n first elements dropped") {
+    assert(List.drop(List(1, 2, 3, 4), 2) == List(3, 4))
+  }
 }
