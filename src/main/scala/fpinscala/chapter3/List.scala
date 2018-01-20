@@ -5,6 +5,10 @@ case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
+  def apply[A](as: A*): List[A] =
+    if (as.isEmpty) Nil
+    else Cons(as.head, apply(as.tail: _*))
+
   def sum(ints: List[Int]): Int = ints match {
     case Nil => 0
     case Cons(x, xs) => x + sum(xs)
@@ -33,7 +37,6 @@ object List {
       case Cons(_, xs) => drop(xs, n - 1)
     }
   }
-
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = {
     def dropLoop(l: List[A]): List[A] = l match {
       case Cons(x, xs) if f(x) => dropLoop(xs)
@@ -43,7 +46,8 @@ object List {
     dropLoop(l)
   }
 
-  def apply[A](as: A*): List[A] =
-    if (as.isEmpty) Nil
-    else Cons(as.head, apply(as.tail: _*))
+  def append[A](a1: List[A], a2: List[A]): List[A] =  a1 match {
+    case Nil => a2
+    case Cons(h,t) => Cons(h, append(t, a2))
+  }
 }
