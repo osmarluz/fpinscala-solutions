@@ -25,9 +25,9 @@ object List {
     case Cons(_, xs) => xs
   }
 
-  def setHead[A](h: A, l: List[A]): List[A] = l match {
+  def setHead[A](x: A, l: List[A]): List[A] = l match {
     case Nil => sys.error("setHead on an empty list")
-    case Cons(_, xs) => Cons(h, xs)
+    case Cons(_, xs) => Cons(x, xs)
   }
 
   def drop[A](l: List[A], n: Int): List[A] = {
@@ -44,6 +44,12 @@ object List {
     }
 
     dropLoop(l)
+  }
+
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => sys.error("init on an empty list")
+    case Cons(_, Nil) => Nil
+    case Cons(x, xs) => Cons(x, init(xs))
   }
 
   def append[A](a1: List[A], a2: List[A]): List[A] =  a1 match {

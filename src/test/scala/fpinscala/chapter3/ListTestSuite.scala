@@ -17,7 +17,7 @@ class ListTestSuite extends FunSuite {
 
   //Exercise 3.3
 
-  test("returns a list containing the input head for an empty input list") {
+  test("returns system error when trying to set the head of an empty list") {
     assertThrows [RuntimeException] {
       List.setHead(1, Nil)
     }
@@ -60,5 +60,21 @@ class ListTestSuite extends FunSuite {
   test("returns a list that matches the input predicate") {
     assert(List.dropWhile(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), (a: Int) => a < 5) == List(5, 6, 7, 8, 9, 10))
     assert(List.dropWhile(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), (a: Int) => a > 5) == List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+  }
+
+  //Exercise 3.6
+
+  test("returns error when the input list in init is Nil") {
+    assertThrows [RuntimeException] {
+      List.init(Nil)
+    }
+  }
+
+  test("returns Nil when the input list contains just one element") {
+    assert(List.init(List(1)) == Nil)
+  }
+
+  test("returns a list with the last element removed") {
+    assert(List.init(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == List(1, 2, 3, 4, 5, 6, 7, 8, 9))
   }
 }
