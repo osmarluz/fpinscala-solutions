@@ -87,4 +87,30 @@ class ListTestSuite extends FunSuite {
   test("returns the length of the input list") {
     assert(List.length(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == 10)
   }
+
+  //Exercise 3.12
+
+  test("returns sum = 0 when the input list is Nil using sum3 function") {
+    assert(List.sum3(Nil) == 0)
+  }
+
+  test("returns the sum of the elements on the input list using sum3 function") {
+    assert(List.sum3(List(1, 2, 3 ,4)) == 10)
+  }
+
+  test("returns product = 1 when the input list is Nil using product3 function") {
+    assert(List.product3(Nil) == 1)
+  }
+
+  test("returns the product of the elements on the input list using product3 function") {
+    assert(List.product3(List(1, 2, 3 ,4)) == 24)
+  }
+
+  test("returns 0 when the input list is Nil using length2 function") {
+    assert(List.length2(Nil) == 0)
+  }
+
+  test("returns the length of the input list using length2 function") {
+    assert(List.length2(List(1, 2, 3 ,4)) == 4)
+  }
 }

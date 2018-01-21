@@ -85,4 +85,20 @@ object List {
   def length[A](as: List[A]): Int = {
     foldRight(as, 0)((_, acc) => acc + 1)
   }
+
+  @annotation.tailrec
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = as match {
+    case Nil => z
+    case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
+  }
+
+  def sum3(ns: List[Int]) =
+    foldLeft(ns, 0)((x, y) => x + y)
+
+  def product3(ns: List[Double]) =
+    foldLeft(ns, 1.0)(_ * _)
+
+  def length2[A](as: List[A]): Int = {
+    foldLeft(as, 0)((acc, _) => acc + 1)
+  }
 }
