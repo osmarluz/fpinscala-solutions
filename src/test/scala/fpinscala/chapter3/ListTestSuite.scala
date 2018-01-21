@@ -77,4 +77,14 @@ class ListTestSuite extends FunSuite {
   test("returns a list with the last element removed") {
     assert(List.init(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == List(1, 2, 3, 4, 5, 6, 7, 8, 9))
   }
+
+  //Exercise 3.9
+
+  test("returns 0 when the input list is Nil") {
+    assert(List.length(Nil) == 0)
+  }
+
+  test("returns the length of the input list") {
+    assert(List.length(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == 10)
+  }
 }

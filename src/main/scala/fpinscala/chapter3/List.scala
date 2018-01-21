@@ -55,12 +55,14 @@ object List {
   def init2[A](l: List[A]): List[A] = {
     import collection.mutable.ListBuffer
     val buf = new ListBuffer[A]
+
     @annotation.tailrec
     def go(cur: List[A]): List[A] = cur match {
       case Nil => sys.error("init of empty list")
       case Cons(_,Nil) => List(buf.toList: _*)
       case Cons(h,t) => buf += h; go(t)
     }
+
     go(l)
   }
 
@@ -75,8 +77,12 @@ object List {
   }
 
   def sum2(ns: List[Int]) =
-    foldRight(ns, 0)((x,y) => x + y)
+    foldRight(ns, 0)((x, y) => x + y)
 
   def product2(ns: List[Double]) =
     foldRight(ns, 1.0)(_ * _)
+
+  def length[A](as: List[A]): Int = {
+    foldRight(as, 0)((_, acc) => acc + 1)
+  }
 }
