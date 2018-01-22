@@ -88,7 +88,7 @@ class ListTestSuite extends FunSuite {
     assert(List.length(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == 10)
   }
 
-  //Exercise 3.12
+  //Exercise 3.11
 
   test("returns sum = 0 when the input list is Nil using sum3 function") {
     assert(List.sum3(Nil) == 0)
@@ -103,7 +103,7 @@ class ListTestSuite extends FunSuite {
   }
 
   test("returns the product of the elements on the input list using product3 function") {
-    assert(List.product3(List(1, 2, 3 ,4)) == 24)
+    assert(List.product3(List(1.0, 2.0, 3.0 ,4.0)) == 24.0)
   }
 
   test("returns 0 when the input list is Nil using length2 function") {
@@ -112,5 +112,15 @@ class ListTestSuite extends FunSuite {
 
   test("returns the length of the input list using length2 function") {
     assert(List.length2(List(1, 2, 3 ,4)) == 4)
+  }
+
+  //Exercise 3.12
+
+  test("returns Nil when reverse is applied on an empty list") {
+    assert(List.reverse(Nil) == Nil)
+  }
+
+  test("returns a list in reverse order") {
+    assert(List.reverse(List(1, 2, 3 ,4)) == List(4, 3, 2 ,1))
   }
 }

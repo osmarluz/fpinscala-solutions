@@ -101,4 +101,8 @@ object List {
   def length2[A](as: List[A]): Int = {
     foldLeft(as, 0)((acc, _) => acc + 1)
   }
+
+  def reverse[A](l: List[A]): List[A] = {
+    foldLeft(l, Nil: List[A])((x, y) => Cons(y, x))
+  }
 }
