@@ -110,6 +110,10 @@ object List {
     foldLeft(l, Nil: List[A])((x, y) => Cons(y, x))
   }
 
+  def appendViaFoldRight[A](a1: List[A], a2: List[A]): List[A] = {
+    foldRight(a1, a2)((h, l) => Cons(h, l))
+  }
+
   def appendViaFoldLeft[A](a1: List[A], a2: List[A]): List[A] = {
     foldLeft(reverse(a1), a2)((l, h) => Cons(h, l))
   }

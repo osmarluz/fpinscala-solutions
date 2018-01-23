@@ -126,15 +126,27 @@ class ListTestSuite extends FunSuite {
 
   //Exercise 3.14
 
-  test("returns second input list when the first input list is Nil using append2") {
-    assert(List.append2(Nil, List(5, 6, 7, 8)) == List(5, 6, 7, 8))
+  test("returns second input list when the first input list is Nil using appendViaFoldRight") {
+    assert(List.appendViaFoldRight(Nil, List(5, 6, 7, 8)) == List(5, 6, 7, 8))
   }
 
-  test("returns first input list when the second input list is Nil using append2") {
-    assert(List.append2(List(1, 2, 3, 4), Nil) == List(1, 2, 3, 4))
+  test("returns first input list when the second input list is Nil using appendViaFoldRight") {
+    assert(List.appendViaFoldRight(List(1, 2, 3, 4), Nil) == List(1, 2, 3, 4))
   }
 
-  test("returns the two input lists appended using append2") {
-    assert(List.append2(List(1, 2, 3, 4), List(5, 6, 7, 8)) == List(1, 2, 3, 4, 5, 6, 7, 8))
+  test("returns the two input lists appended using appendViaFoldRight") {
+    assert(List.appendViaFoldRight(List(1, 2, 3, 4), List(5, 6, 7, 8)) == List(1, 2, 3, 4, 5, 6, 7, 8))
+  }
+
+  test("returns second input list when the first input list is Nil using appendViaFoldLeft") {
+    assert(List.appendViaFoldLeft(Nil, List(5, 6, 7, 8)) == List(5, 6, 7, 8))
+  }
+
+  test("returns first input list when the second input list is Nil using appendViaFoldLeft") {
+    assert(List.appendViaFoldLeft(List(1, 2, 3, 4), Nil) == List(1, 2, 3, 4))
+  }
+
+  test("returns the two input lists appended using appendViaFoldLeft") {
+    assert(List.appendViaFoldLeft(List(1, 2, 3, 4), List(5, 6, 7, 8)) == List(1, 2, 3, 4, 5, 6, 7, 8))
   }
 }
