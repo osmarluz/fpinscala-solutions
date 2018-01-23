@@ -149,4 +149,18 @@ class ListTestSuite extends FunSuite {
   test("returns the two input lists appended using appendViaFoldLeft") {
     assert(List.appendViaFoldLeft(List(1, 2, 3, 4), List(5, 6, 7, 8)) == List(1, 2, 3, 4, 5, 6, 7, 8))
   }
+
+  //Exercise 3.15
+
+  test("returns the concatenation of a list of lists (with a Nil second list) as a single list") {
+    assert(List.concat(List(List(1, 2, 3, 4), Nil)) == List(1, 2, 3, 4))
+  }
+
+  test("returns the concatenation of a list of lists (with a Nil first list) as a single list") {
+    assert(List.concat(List(Nil, List(5, 6, 7, 8))) == List(5, 6, 7, 8))
+  }
+
+  test("returns the concatenation of a list of lists as a single list") {
+    assert(List.concat(List(List(1, 2, 3, 4), Nil, List(5, 6, 7, 8))) == List(1, 2, 3, 4, 5, 6, 7, 8))
+  }
 }

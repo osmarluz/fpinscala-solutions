@@ -117,4 +117,8 @@ object List {
   def appendViaFoldLeft[A](a1: List[A], a2: List[A]): List[A] = {
     foldLeft(reverse(a1), a2)((l, h) => Cons(h, l))
   }
+
+  def concat[A](l: List[List[A]]): List[A] = {
+    foldLeft(l, Nil: List[A])(append)
+  }
 }
