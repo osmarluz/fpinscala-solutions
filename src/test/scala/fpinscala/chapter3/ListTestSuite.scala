@@ -123,4 +123,18 @@ class ListTestSuite extends FunSuite {
   test("returns a list in reverse order") {
     assert(List.reverse(List(1, 2, 3 ,4)) == List(4, 3, 2 ,1))
   }
+
+  //Exercise 3.14
+
+  test("returns second input list when the first input list is Nil using append2") {
+    assert(List.append2(Nil, List(5, 6, 7, 8)) == List(5, 6, 7, 8))
+  }
+
+  test("returns first input list when the second input list is Nil using append2") {
+    assert(List.append2(List(1, 2, 3, 4), Nil) == List(1, 2, 3, 4))
+  }
+
+  test("returns the two input lists appended using append2") {
+    assert(List.append2(List(1, 2, 3, 4), List(5, 6, 7, 8)) == List(1, 2, 3, 4, 5, 6, 7, 8))
+  }
 }
