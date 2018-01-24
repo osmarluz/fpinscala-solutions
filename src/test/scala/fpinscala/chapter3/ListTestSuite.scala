@@ -163,4 +163,14 @@ class ListTestSuite extends FunSuite {
   test("returns the concatenation of a list of lists as a single list") {
     assert(List.concat(List(List(1, 2, 3, 4), Nil, List(5, 6, 7, 8))) == List(1, 2, 3, 4, 5, 6, 7, 8))
   }
+
+  //Exercise 3.16
+
+  test("returns Nil when add1 is applied to an empty list") {
+    assert(List.add1(Nil) == Nil)
+  }
+
+  test("returns a list with 1 added to each element") {
+    assert(List.add1(List(5, 6, 7, 8)) == List(6, 7, 8, 9))
+  }
 }
