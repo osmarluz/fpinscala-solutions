@@ -183,4 +183,22 @@ class ListTestSuite extends FunSuite {
   test("returns a list with elements converted to String") {
     assert(List.doubleToString(List(1.0, 2.0, 3.0, 4.0)) == List("1.0", "2.0", "3.0", "4.0"))
   }
+
+  //Exercise 3.18
+
+  test("returns Nil when map is applied to an empty list using _ + 1 as the input function") {
+    assert(List.map(Nil: List[Int])(_ + 1) == Nil)
+  }
+
+  test("returns a list with 1 added to each element using map") {
+    assert(List.map(List(5, 6, 7, 8))(_ + 1) == List(6, 7, 8, 9))
+  }
+
+  test("returns Nil when map is applied to an empty list using _.toString as the input function") {
+    assert(List.map(Nil: List[Double])(_.toString) == Nil)
+  }
+
+  test("returns a list with elements converted to String using map") {
+    assert(List.map(List(1.0, 2.0, 3.0, 4.0))(_.toString) == List("1.0", "2.0", "3.0", "4.0"))
+  }
 }
