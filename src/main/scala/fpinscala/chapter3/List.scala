@@ -129,4 +129,8 @@ object List {
   def add1(l: List[Int]): List[Int] = {
     foldLeft(reverse(l), Nil: List[Int])((b, a) => Cons(a + 1, b))
   }
+
+  def doubleToString(l: List[Double]): List[String] = {
+    foldLeft(reverse(l), Nil: List[String])((b, a) => Cons(a.toString, b))
+  }
 }

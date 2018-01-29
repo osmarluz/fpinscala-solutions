@@ -173,4 +173,14 @@ class ListTestSuite extends FunSuite {
   test("returns a list with 1 added to each element") {
     assert(List.add1(List(5, 6, 7, 8)) == List(6, 7, 8, 9))
   }
+
+  //Exercise 3.17
+
+  test("returns Nil when doubleToString is applied to an empty list") {
+    assert(List.doubleToString(Nil) == Nil)
+  }
+
+  test("returns a list with elements converted to String") {
+    assert(List.doubleToString(List(1.0, 2.0, 3.0, 4.0)) == List("1.0", "2.0", "3.0", "4.0"))
+  }
 }
