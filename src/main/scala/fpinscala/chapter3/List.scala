@@ -137,4 +137,8 @@ object List {
   def map[A, B](as: List[A])(f: A => B): List[B] = {
     foldLeft(reverse(as), Nil: List[B])((b, a) => Cons(f(a), b))
   }
+
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = {
+    foldLeft(reverse(as), Nil: List[A])((b, a) => if (f(a)) Cons(a, b) else b)
+  }
 }

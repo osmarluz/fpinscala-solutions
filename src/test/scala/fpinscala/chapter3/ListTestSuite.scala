@@ -201,4 +201,15 @@ class ListTestSuite extends FunSuite {
   test("returns a list with elements converted to String using map") {
     assert(List.map(List(1.0, 2.0, 3.0, 4.0))(_.toString) == List("1.0", "2.0", "3.0", "4.0"))
   }
+
+  //Exercise 3.19
+
+  test("returns Nil when the input list in filter is Nil") {
+    assert(List.filter(Nil)((a: Int) => a < 5) == Nil)
+  }
+
+  test("returns a filtered list with elements that match the input predicate") {
+    assert(List.filter(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a < 5) == List(1, 2, 3, 4))
+    assert(List.filter(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a > 5) == List(6, 7, 8, 9, 10))
+  }
 }
