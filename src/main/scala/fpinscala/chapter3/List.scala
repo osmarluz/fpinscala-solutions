@@ -145,4 +145,8 @@ object List {
   def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
     foldLeft(reverse(as), Nil: List[B])((b, a) => append(f(a), b))
   }
+
+  def filterViaFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
+    flatMap(as)(a => if (f(a)) List(a) else Nil)
+  }
 }

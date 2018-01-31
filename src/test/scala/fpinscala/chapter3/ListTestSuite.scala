@@ -222,4 +222,15 @@ class ListTestSuite extends FunSuite {
   test("returns a list with duplicated elements from the original list") {
     assert(List.flatMap(List(5, 6, 7, 8))(i => List(i, i)) == List(5, 5, 6, 6, 7, 7, 8, 8))
   }
+
+  //Exercise 3.19
+
+  test("returns Nil when the input list in filterUsingFlatMap is Nil") {
+    assert(List.filterViaFlatMap(Nil)((a: Int) => a < 5) == Nil)
+  }
+
+  test("returns a filtered list (using filterUsingFlatMap) with elements that match the input predicate") {
+    assert(List.filterViaFlatMap(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a < 5) == List(1, 2, 3, 4))
+    assert(List.filterViaFlatMap(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a > 5) == List(6, 7, 8, 9, 10))
+  }
 }
