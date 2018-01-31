@@ -141,4 +141,8 @@ object List {
   def filter[A](as: List[A])(f: A => Boolean): List[A] = {
     foldLeft(reverse(as), Nil: List[A])((b, a) => if (f(a)) Cons(a, b) else b)
   }
+
+  def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
+    foldLeft(reverse(as), Nil: List[B])((b, a) => append(f(a), b))
+  }
 }
