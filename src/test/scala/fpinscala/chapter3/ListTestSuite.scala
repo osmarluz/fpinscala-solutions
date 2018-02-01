@@ -223,7 +223,7 @@ class ListTestSuite extends FunSuite {
     assert(List.flatMap(List(5, 6, 7, 8))(i => List(i, i)) == List(5, 5, 6, 6, 7, 7, 8, 8))
   }
 
-  //Exercise 3.19
+  //Exercise 3.21
 
   test("returns Nil when the input list in filterUsingFlatMap is Nil") {
     assert(List.filterViaFlatMap(Nil)((a: Int) => a < 5) == Nil)
@@ -232,5 +232,21 @@ class ListTestSuite extends FunSuite {
   test("returns a filtered list (using filterUsingFlatMap) with elements that match the input predicate") {
     assert(List.filterViaFlatMap(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a < 5) == List(1, 2, 3, 4))
     assert(List.filterViaFlatMap(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))((a: Int) => a > 5) == List(6, 7, 8, 9, 10))
+  }
+
+  //Exercise 3.22
+
+  test("returns the second input list when the first input list in addPairwise is Nil") {
+    assert(List.addPairwise(Nil, List(1, 2, 3, 4)) == List(1, 2, 3, 4))
+    assert(List.addPairwise(Nil, Nil) == Nil)
+  }
+
+  test("returns the first input list when the second input list in addPairwise is Nil") {
+    assert(List.addPairwise(List(1, 2, 3, 4), Nil) == List(1, 2, 3, 4))
+    assert(List.addPairwise(Nil, Nil) == Nil)
+  }
+
+  test("returns a list with the elements of the input lists added pairwise") {
+    assert(List.addPairwise(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == List(2, 4, 6, 8, 10, 12, 14, 16, 18, 20))
   }
 }
