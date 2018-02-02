@@ -249,4 +249,20 @@ class ListTestSuite extends FunSuite {
   test("returns a list with the elements of the input lists added pairwise") {
     assert(List.addPairwise(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) == List(2, 4, 6, 8, 10, 12, 14, 16, 18, 20))
   }
+
+  //Exercise 3.23
+
+  test("returns Nil list when the first input list in zipWith is Nil") {
+    assert(List.zipWith(Nil: List[Int], List(1, 2, 3, 4))(_ + _) == Nil)
+    assert(List.zipWith(Nil: List[Int], Nil)(_ + _) == Nil)
+  }
+
+  test("returns Nil list when the second input list in zipWith is Nil") {
+    assert(List.zipWith(List(1, 2, 3, 4), Nil: List[Int])(_ + _) == Nil)
+    assert(List.zipWith(Nil: List[Int], Nil)(_ + _) == Nil)
+  }
+
+  test("returns a list with the elements of the input lists added pairwise using zipWith") {
+    assert(List.zipWith(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))(_ + _) == List(2, 4, 6, 8, 10, 12, 14, 16, 18, 20))
+  }
 }

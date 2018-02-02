@@ -16,7 +16,7 @@ object List {
 
   def product(ds: List[Double]): Double = ds match {
     case Nil => 1.0
-    case Cons(0.0,_) => 0.0
+    case Cons(0.0, _) => 0.0
     case Cons(x, xs) => x * product(xs)
   }
 
@@ -37,6 +37,7 @@ object List {
       case Cons(_, xs) => drop(xs, n - 1)
     }
   }
+
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = {
     def dropLoop(l: List[A]): List[A] = l match {
       case Cons(x, xs) if f(x) => dropLoop(xs)
@@ -59,8 +60,8 @@ object List {
     @annotation.tailrec
     def go(cur: List[A]): List[A] = cur match {
       case Nil => sys.error("init of empty list")
-      case Cons(_,Nil) => List(buf.toList: _*)
-      case Cons(h,t) => buf += h; go(t)
+      case Cons(_, Nil) => List(buf.toList: _*)
+      case Cons(h, t) => buf += h; go(t)
     }
 
     go(l)
@@ -68,10 +69,10 @@ object List {
 
   def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
     case Nil => a2
-    case Cons(h,t) => Cons(h, append(t, a2))
+    case Cons(h, t) => Cons(h, append(t, a2))
   }
 
-  def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B = as match {
+  def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = as match {
     case Nil => z
     case Cons(x, xs) => f(x, foldRight(xs, z)(f))
   }
@@ -156,6 +157,12 @@ object List {
       case Cons(h1, t1) => l2 match {
         case Nil => l1
         case Cons(h2, t2) => Cons(h1 + h2, addPairwise(t1, t2))
+      }
     }
+
+  def zipWith[A, B, C](l1: List[A], l2: List[B])(f: (A, B) => C): List[C] = (l1, l2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
   }
 }
