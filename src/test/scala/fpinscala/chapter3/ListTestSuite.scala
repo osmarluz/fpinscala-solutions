@@ -265,4 +265,26 @@ class ListTestSuite extends FunSuite {
   test("returns a list with the elements of the input lists added pairwise using zipWith") {
     assert(List.zipWith(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))(_ + _) == List(2, 4, 6, 8, 10, 12, 14, 16, 18, 20))
   }
+
+  //Exercise 3.24
+
+  test("returns true when the sup list is Nil and the sub list is also Nil") {
+    assert(List.hasSubsequence(Nil, Nil))
+  }
+
+  test("returns false when the sup list is Nil and the sub list is not Nil") {
+    assert(!List.hasSubsequence(Nil, List(1, 2, 3, 4)))
+  }
+
+  test("returns true for a sub list that is in the start of the sup list") {
+    assert(List.hasSubsequence(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(1, 2, 3, 4)))
+  }
+
+  test("returns true for a sub list that is in the middle of the sup list") {
+    assert(List.hasSubsequence(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(4, 5, 6, 7)))
+  }
+
+  test("returns false for a sub list that is not a sublist of sup") {
+    assert(!List.hasSubsequence(List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), List(9, 10, 11, 12)))
+  }
 }
