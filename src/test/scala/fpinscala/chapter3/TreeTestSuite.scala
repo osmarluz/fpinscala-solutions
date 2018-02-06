@@ -12,4 +12,14 @@ class TreeTestSuite extends FunSuite {
   test("returns the number of elements of a more complex tree structure") {
     assert(Tree.size(Branch(Branch(Leaf(1), Leaf(1)), Branch(Leaf(1), Leaf(1)))) == 7)
   }
+
+  //Exercise 3.26
+
+  test("returns the value of the Leaf when the input list is a Leaf") {
+    assert(Tree.maximum(Leaf(5)) == 5)
+  }
+
+  test("returns the maximum value of a more complex tree structure") {
+    assert(Tree.maximum(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Leaf(12)))) == 12)
+  }
 }
