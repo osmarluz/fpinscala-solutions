@@ -22,4 +22,14 @@ class TreeTestSuite extends FunSuite {
   test("returns the maximum value of a more complex tree structure") {
     assert(Tree.maximum(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Leaf(12)))) == 12)
   }
+
+  //Exercise 3.27
+
+  test("returns 0 as the depth when the input tree is a Leaf") {
+    assert(Tree.depth(Leaf(5)) == 0)
+  }
+
+  test("returns the depth of a more complex tree structure") {
+    assert(Tree.depth(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Branch(Leaf(1), Leaf(15))))) == 3)
+  }
 }
