@@ -32,4 +32,10 @@ class TreeTestSuite extends FunSuite {
   test("returns the depth of a more complex tree structure") {
     assert(Tree.depth(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Branch(Leaf(1), Leaf(15))))) == 3)
   }
+
+  //Exercise 3.28
+
+  test("returns a tree with the values mapped according to the input function") {
+    assert(Tree.map(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Branch(Leaf(1), Leaf(15)))))(_ + 1) == Branch(Branch(Leaf(2), Leaf(8)), Branch(Leaf(5), Branch(Leaf(2), Leaf(16)))))
+  }
 }
