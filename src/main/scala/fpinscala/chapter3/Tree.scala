@@ -29,4 +29,8 @@ object Tree {
     case Leaf(a) => f(a)
     case Branch(l, r) => g(fold(l)(f)(g), fold(r)(f)(g))
   }
+
+  def sizeViaFold[A](t: Tree[A]): Int = {
+    fold(t)(_ => 1)((ls, rs) => 1 + ls + rs)
+  }
 }
