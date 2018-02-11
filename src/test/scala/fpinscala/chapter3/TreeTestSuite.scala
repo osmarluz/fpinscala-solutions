@@ -56,4 +56,12 @@ class TreeTestSuite extends FunSuite {
   test("returns the maximum value of a more complex tree structure using maximumViaFold") {
     assert(Tree.maximumViaFold(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Leaf(12)))) == 12)
   }
+
+  test("returns 0 as the depth when the input tree is a Leaf using depthViaFold") {
+    assert(Tree.depthViaFold(Leaf(5)) == 0)
+  }
+
+  test("returns the depth of a more complex tree structure using depthViaFold") {
+    assert(Tree.depthViaFold(Branch(Branch(Leaf(1), Leaf(7)), Branch(Leaf(4), Branch(Leaf(1), Leaf(15))))) == 3)
+  }
 }
