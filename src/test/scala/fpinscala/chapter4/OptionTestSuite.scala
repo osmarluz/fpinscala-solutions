@@ -51,4 +51,11 @@ class OptionTestSuite extends FunSuite {
   test("returns the input Option when the input function on filter is satisfied") {
     assert(Some(5).filter(_ <= 5) == Some(5))
   }
+
+  //Exercise 4.2
+
+  test("returns the variance of an input sequence") {
+    assert(None.variance(List(1, 2, 3, 4)) == Some(1.25))
+    assert(Some(1).variance(List(1, 2, 3, 4)) == Some(1.25))
+  }
 }
