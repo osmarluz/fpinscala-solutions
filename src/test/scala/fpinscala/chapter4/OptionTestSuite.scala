@@ -58,4 +58,21 @@ class OptionTestSuite extends FunSuite {
     assert(None.variance(List(1, 2, 3, 4)) == Some(1.25))
     assert(Some(1).variance(List(1, 2, 3, 4)) == Some(1.25))
   }
+
+  //Exercise 4.3
+
+  test("returns None when the first input argument is None") {
+    assert(None.map2(None: Option[Int], Some(5))(_ + _) == None)
+    assert(Some(1).map2(None: Option[Int], Some(5))(_ + _) == None)
+  }
+
+  test("returns None when the second input argument is None") {
+    assert(None.map2(Some(5), None: Option[Int])(_ + _) == None)
+    assert(Some(1).map2(Some(5), None: Option[Int])(_ + _) == None)
+  }
+
+  test("returns the output of the input function lifted to the Option type") {
+    assert(None.map2(Some(5), Some(5))(_ + _) == Some(10))
+    assert(Some(1).map2(Some(5), Some(5))(_ + _) == Some(10))
+  }
 }
