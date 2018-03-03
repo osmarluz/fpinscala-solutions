@@ -31,6 +31,11 @@ sealed trait Option[+A] {
     case (_, None) => None
     case (Some(x), Some(y)) => Some(f(x, y))
   }
+
+  def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
+    case Nil => Some(Nil)
+    case h :: t => h flatMap (hh => sequence(t) map (hh :: _))
+  }
 }
 
 case class Some[+A](get: A) extends Option[A]
