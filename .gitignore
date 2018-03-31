@@ -6,3 +6,6 @@
 
 #Ignore target folder
 /target
+
+#Ignore fpinscala-solutions.iml
+fpinscala-solutions.iml
