@@ -36,6 +36,10 @@ sealed trait Option[+A] {
     case Nil => Some(Nil)
     case h :: t => h flatMap (hh => sequence(t) map (hh :: _))
   }
+
+  def traverse1[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = {
+    sequence(a map (f(_)))
+  }
 }
 
 case class Some[+A](get: A) extends Option[A]
