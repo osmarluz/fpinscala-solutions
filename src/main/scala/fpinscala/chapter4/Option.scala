@@ -37,6 +37,10 @@ sealed trait Option[+A] {
     case h :: t => h flatMap (hh => sequence(t) map (hh :: _))
   }
 
+  def sequence_1[A](a: List[Option[A]]): Option[List[A]] = {
+    a.foldRight[Option[List[A]]](Some(Nil))((a, b) => map2(a, b)(_ :: _))
+  }
+
   def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = {
     sequence(a map (f(_)))
   }
