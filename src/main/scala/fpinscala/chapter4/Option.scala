@@ -41,6 +41,10 @@ sealed trait Option[+A] {
     a.foldRight[Option[List[A]]](Some(Nil))((a, b) => map2(a, b)(_ :: _))
   }
 
+  def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] = {
+    traverse_1(a)(e => e)
+  }
+
   def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = {
     sequence(a map (f(_)))
   }
