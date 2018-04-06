@@ -107,4 +107,19 @@ class OptionTestSuite extends FunSuite {
     assert(None.sequence_1(List(Some(1), Some(2), Some(5))) == Some(List(1, 2, 5)))
     assert(Some(1).sequence_1(List(Some(1), Some(2), Some(5))) == Some(List(1, 2, 5)))
   }
+
+  test("returns Some(Nil) when the input list is Nil using sequenceViaTraverse") {
+    assert(None.sequenceViaTraverse(Nil) == Some(Nil))
+    assert(Some(1).sequenceViaTraverse(Nil) == Some(Nil))
+  }
+
+  test("returns None when the input list contains at least one None types using sequenceViaTraverse") {
+    assert(None.sequenceViaTraverse(List(Some(1), Some(2), Some(5), None)) == None)
+    assert(Some(1).sequenceViaTraverse(List(Some(1), Some(2), Some(5), None)) == None)
+  }
+
+  test("returns Some(List()) when the input list is a List of Some types using sequenceViaTraverse") {
+    assert(None.sequenceViaTraverse(List(Some(1), Some(2), Some(5))) == Some(List(1, 2, 5)))
+    assert(Some(1).sequenceViaTraverse(List(Some(1), Some(2), Some(5))) == Some(List(1, 2, 5)))
+  }
 }
