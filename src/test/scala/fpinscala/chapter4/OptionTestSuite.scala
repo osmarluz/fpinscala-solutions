@@ -139,4 +139,19 @@ class OptionTestSuite extends FunSuite {
     assert(None.traverse(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else Some(0)) == Some(List(0, 2, 0, 4, 0)))
     assert(Some(1).traverse(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else Some(0)) == Some(List(0, 2, 0, 4, 0)))
   }
+
+  test("returns Some(Nil) when the input list is Nil for traverse_1") {
+    assert(None.traverse_1(Nil)(e => Some(e)) == Some(Nil))
+    assert(Some(1).traverse_1(Nil)(e => Some(e)) == Some(Nil))
+  }
+
+  test("returns None when the input function maps to at least one None element using traverse_1") {
+    assert(None.traverse_1(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else None) == None)
+    assert(Some(1).traverse_1(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else None) == None)
+  }
+
+  test("returns Some(List()) when the input function maps to no None element using traverse_1") {
+    assert(None.traverse_1(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else Some(0)) == Some(List(0, 2, 0, 4, 0)))
+    assert(Some(1).traverse_1(List(1, 2, 3, 4, 5))(e => if (e % 2 == 0) Some(e) else Some(0)) == Some(List(0, 2, 0, 4, 0)))
+  }
 }
