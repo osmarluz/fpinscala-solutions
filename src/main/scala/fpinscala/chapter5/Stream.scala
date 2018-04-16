@@ -1,6 +1,11 @@
 package fpinscala.chapter5
 
-sealed trait Stream[+A]
+sealed trait Stream[+A] {
+  def toList: List[A] = this match {
+    case Cons(h, t) => h() :: t().toList
+    case _ => List()
+  }
+}
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
