@@ -16,10 +16,11 @@ sealed trait Stream[+A] {
 
   @annotation.tailrec
   final def drop(n: Int): Stream[A] = this match {
-    case Empty => this
     case Cons(_, t) if n > 0 => t().drop(n - 1)
+    case _ => this
   }
 }
+
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
 
