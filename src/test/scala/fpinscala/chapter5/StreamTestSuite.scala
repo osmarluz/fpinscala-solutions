@@ -45,4 +45,16 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5).drop(1).toList == Stream(2, 3, 4, 5).toList)
     assert(Stream(1, 2, 3, 4, 5).drop(3).toList == Stream(4, 5).toList)
   }
+
+  //Exercise 5.3
+
+  test("returns empty stream when takeWhile is applied to an empty stream") {
+    assert(Empty.takeWhile((n: Int) => n > 5) == Empty)
+    assert(Stream().takeWhile((n: Int) => n > 5) == Empty)
+  }
+
+  test("returns all starting elements of the original stream that match the given predicate") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile((n: Int) => n > 5) == Empty)
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile((n: Int) => n < 5).toList == Stream(1, 2, 3, 4).toList)
+  }
 }
