@@ -3,9 +3,19 @@ package fpinscala.chapter5
 import Stream._
 
 sealed trait Stream[+A] {
-  def toList: List[A] = this match {
-    case Cons(h, t) => h() :: t().toList
+  def toListRecursive: List[A] = this match {
+    case Cons(h, t) => h() :: t().toListRecursive
     case _ => List()
+  }
+
+  def toList: List[A] = {
+    @annotation.tailrec
+    def go(s: Stream[A], acc: List[A]): List[A] = s match {
+      case Cons(h, t) => go(t(), h() :: acc)
+      case _ => acc
+    }
+
+    go(this, List()).reverse
   }
 
   def take(n: Int): Stream[A] = this match {
