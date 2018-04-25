@@ -18,6 +18,19 @@ sealed trait Stream[+A] {
     go(this, List()).reverse
   }
 
+  def toListFast: List[A] = {
+    import collection.mutable.ListBuffer
+    val buf = new ListBuffer[A]
+
+    @annotation.tailrec
+    def go(s: Stream[A]): List[A] = s match {
+      case Cons(h, t) => buf += h(); go(t())
+      case _ => buf.toList
+    }
+
+    go(this)
+  }
+
   def take(n: Int): Stream[A] = this match {
     case Empty => empty
     case Cons(h, _) if n == 1 => cons(h(), empty)
