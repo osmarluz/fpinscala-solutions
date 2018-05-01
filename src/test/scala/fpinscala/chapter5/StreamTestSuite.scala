@@ -58,6 +58,20 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile((n: Int) => n < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
   }
 
+  test("returns false when exists is applied to an empty stream") {
+    assert(!Empty.exists((n: Int) => n > 5))
+  }
+
+  test("returns true when the exists predicate is satisfied for an element") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).exists((n: Int) => n < 5))
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).exists((n: Int) => n > 5))
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).exists((n: Int) => n >= 10))
+  }
+
+  test("returns false when the exists predicate is not satisfied for all elements") {
+    assert(!Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).exists((n: Int) => n == 11))
+  }
+
   //Exercise 5.4
 
   test("returns true when forAll is applied to an empty stream") {
