@@ -87,4 +87,16 @@ class StreamTestSuite extends FunSuite {
   test("returns true when the forAll predicate is satisfied for all elements") {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).forAll((n: Int) => n <= 10))
   }
+
+  //Exercise 5.5
+
+  test("returns empty stream when takeWhile_1 is applied to an empty stream") {
+    assert(Empty.takeWhile_1((n: Int) => n > 5) == Empty)
+    assert(Stream().takeWhile_1((n: Int) => n > 5) == Empty)
+  }
+
+  test("returns all starting elements of the original stream that match the given predicate using takeWhile_1") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile_1((n: Int) => n > 5) == Empty)
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile_1((n: Int) => n < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
+  }
 }
