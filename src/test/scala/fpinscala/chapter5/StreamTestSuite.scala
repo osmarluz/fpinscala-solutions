@@ -99,4 +99,15 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile_1((n: Int) => n > 5) == Empty)
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhile_1((n: Int) => n < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
   }
+
+  //Exercise 5.6
+
+  test("returns None when headOption is applied to an empty stream") {
+    assert(Empty.headOption.isEmpty)
+    assert(Stream().headOption.isEmpty)
+  }
+
+  test("returns the head of the stream within the Some type") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).headOption.contains(1))
+  }
 }
