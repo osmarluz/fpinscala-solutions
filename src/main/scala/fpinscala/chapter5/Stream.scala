@@ -60,6 +60,8 @@ sealed trait Stream[+A] {
   def takeWhile_1(p: A => Boolean): Stream[A] = foldRight(empty[A])((a, b) => if(p(a)) cons(a, b) else empty)
 
   def headOption: Option[A] = foldRight(None: Option[A])((h,_) => Some(h))
+
+  def map[A, B](f: A => B): Stream[B] = foldRight(empty[B])((a, b) => cons(f(a), b))
 }
 
 case object Empty extends Stream[Nothing]
