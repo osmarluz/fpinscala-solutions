@@ -110,4 +110,15 @@ class StreamTestSuite extends FunSuite {
   test("returns the head of the stream within the Some type") {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).headOption.contains(1))
   }
+
+  //Exercise 5.7
+
+  test("returns Empty when map is applied to an empty stream") {
+    assert(Empty.map((a: Int) => a + 1) == Empty)
+    assert(Stream().map((a: Int) => a + 1) == Empty)
+  }
+
+  test("returns a stream with 1 added to each element using map") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).map((a: Int) => a + 1).toListRecursive == Stream(2, 3, 4, 5, 6, 7, 8, 9, 10, 11).toListRecursive)
+  }
 }
