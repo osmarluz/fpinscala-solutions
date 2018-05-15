@@ -131,4 +131,18 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).filter((a: Int) => a < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).filter((a: Int) => a > 5).toListRecursive == Stream(6, 7, 8, 9, 10).toListRecursive)
   }
+
+  test("returns input list when the stream is empty") {
+    assert(Empty.append(Stream(5, 6, 7, 8)).toListRecursive == Stream(5, 6, 7, 8).toListRecursive)
+    assert(Stream().append(Stream(5, 6, 7, 8)).toListRecursive == Stream(5, 6, 7, 8).toListRecursive)
+  }
+
+  test("returns the stream when the input stream is empty") {
+    assert(Stream(1, 2, 3, 4).append(Empty).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
+    assert(Stream(1, 2, 3, 4).append(Empty).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
+  }
+
+  test("returns the streams appended") {
+    assert(Stream(1, 2, 3, 4).append(Stream(5, 6, 7, 8)).toListRecursive == Stream(1, 2, 3, 4, 5, 6, 7, 8).toListRecursive)
+  }
 }
