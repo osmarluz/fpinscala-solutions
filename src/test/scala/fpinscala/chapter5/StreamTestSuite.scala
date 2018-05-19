@@ -145,4 +145,13 @@ class StreamTestSuite extends FunSuite {
   test("returns the streams appended") {
     assert(Stream(1, 2, 3, 4).append(Stream(5, 6, 7, 8)).toListRecursive == Stream(1, 2, 3, 4, 5, 6, 7, 8).toListRecursive)
   }
+
+  test("returns Empty when flatMap is applied to an empty stream") {
+    assert(Empty.flatMap(i => Stream(i, i)) == Empty)
+    assert(Stream().flatMap(i => Stream(i, i)) == Empty)
+  }
+
+  test("returns a list with duplicated elements from the original list") {
+    assert(Stream(5, 6, 7, 8).flatMap(i => Stream(i, i)).toListRecursive == Stream(5, 5, 6, 6, 7, 7, 8, 8).toListRecursive)
+  }
 }
