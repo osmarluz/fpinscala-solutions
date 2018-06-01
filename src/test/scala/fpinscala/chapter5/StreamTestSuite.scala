@@ -154,4 +154,10 @@ class StreamTestSuite extends FunSuite {
   test("returns a list with duplicated elements from the original list") {
     assert(Stream(5, 6, 7, 8).flatMap(i => Stream(i, i)).toListRecursive == Stream(5, 5, 6, 6, 7, 7, 8, 8).toListRecursive)
   }
+
+  //Exercise 5.8
+
+  test("returns a list generated with the constant method defined for Stream") {
+    assert(Stream.constant(5).take(4).toList == List(5, 5, 5, 5))
+  }
 }
