@@ -160,4 +160,10 @@ class StreamTestSuite extends FunSuite {
   test("returns a list generated with the constant method defined for Stream") {
     assert(Stream.constant(5).take(4).toList == List(5, 5, 5, 5))
   }
+
+  //Exercise 5.9
+
+  test("returns a list generated with the from method defined for Stream") {
+    assert(Stream.from(5).take(4).toList == List(5, 6, 7, 8))
+  }
 }
