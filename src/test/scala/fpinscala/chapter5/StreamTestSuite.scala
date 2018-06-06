@@ -166,4 +166,18 @@ class StreamTestSuite extends FunSuite {
   test("returns a list generated with the from method defined for Stream") {
     assert(Stream.from(5).take(4).toList == List(5, 6, 7, 8))
   }
+
+  //Exercise 5.10
+
+  test("returns a list with the first Fibonacci number") {
+    assert(Stream.fibs.take(1).toList == List(0))
+  }
+
+  test("returns a list with the first two Fibonacci number") {
+    assert(Stream.fibs.take(2).toList == List(0, 1))
+  }
+
+  test("returns a list with the first ten Fibonacci number") {
+    assert(Stream.fibs.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34))
+  }
 }
