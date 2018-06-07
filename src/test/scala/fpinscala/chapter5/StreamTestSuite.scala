@@ -177,7 +177,7 @@ class StreamTestSuite extends FunSuite {
     assert(Stream.fibs.take(2).toList == List(0, 1))
   }
 
-  test("returns a list with the first ten Fibonacci number") {
-    assert(Stream.fibs.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34))
+  test("returns a list with the first ten Fibonacci numbers") {
+    assert(Stream.fibs.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34 ))
   }
 }
