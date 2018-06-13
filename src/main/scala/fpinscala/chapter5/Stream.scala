@@ -107,4 +107,9 @@ object Stream {
     case (a,b) => Some(a, (b, a + b))
     case _ => None
   })
+
+  def fromViaUnfold(n: Int): Stream[Int] = unfold(n)(s => s match {
+    case n => Some(n, n + 1)
+    case _ => None
+  })
 }
