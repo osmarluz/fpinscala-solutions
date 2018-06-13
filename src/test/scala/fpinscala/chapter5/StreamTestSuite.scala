@@ -180,4 +180,18 @@ class StreamTestSuite extends FunSuite {
   test("returns a list with the first ten Fibonacci numbers") {
     assert(Stream.fibs.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34 ))
   }
+
+  //Exercise 5.12
+
+  test("returns a list with the first Fibonacci number using fibsViaUnfold") {
+    assert(Stream.fibsViaUnfold.take(1).toList == List(0))
+  }
+
+  test("returns a list with the first two Fibonacci number using fibsViaUnfold") {
+    assert(Stream.fibsViaUnfold.take(2).toList == List(0, 1))
+  }
+
+  test("returns a list with the first ten Fibonacci numbers using fibsViaUnfold") {
+    assert(Stream.fibsViaUnfold.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34 ))
+  }
 }
