@@ -194,4 +194,8 @@ class StreamTestSuite extends FunSuite {
   test("returns a list with the first ten Fibonacci numbers using fibsViaUnfold") {
     assert(Stream.fibsViaUnfold.take(10).toList == List(0, 1, 1,	2, 3,	5, 8, 13, 21, 34 ))
   }
+
+  test("returns a list generated with the fromViaUnfold method defined for Stream") {
+    assert(Stream.fromViaUnfold(5).take(4).toList == List(5, 6, 7, 8))
+  }
 }
