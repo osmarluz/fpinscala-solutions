@@ -112,4 +112,9 @@ object Stream {
     case n => Some(n, n + 1)
     case _ => None
   })
+
+  def constantViaUnfold[A](a: A): Stream[A] = unfold(a)(s => s match {
+    case x => Some(x, x)
+    case _ => None
+  })
 }
