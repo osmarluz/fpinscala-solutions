@@ -103,23 +103,11 @@ object Stream {
     case None => empty
   }
 
-  def fibsViaUnfold = unfold((0,1))(s => s match {
-    case (a,b) => Some(a, (b, a + b))
-    case _ => None
-  })
+  def fibsViaUnfold = unfold((0,1))(s => s match { case (a,b) => Some(a, (b, a + b)) })
 
-  def fromViaUnfold(n: Int): Stream[Int] = unfold(n)(s => s match {
-    case x => Some(x, x + 1)
-    case _ => None
-  })
+  def fromViaUnfold(n: Int): Stream[Int] = unfold(n)(s => s match { case x => Some(x, x + 1) })
 
-  def constantViaUnfold[A](a: A): Stream[A] = unfold(a)(s => s match {
-    case x => Some(x, x)
-    case _ => None
-  })
+  def constantViaUnfold[A](a: A): Stream[A] = unfold(a)(s => s match { case x => Some(x, x) })
 
-  val onesViaUnfold = unfold(1)(s => s match {
-    case 1 => Some(1, 1)
-    case _ => None
-  })
+  val onesViaUnfold = unfold(1)(s => s match { case 1 => Some(1, 1) })
 }
