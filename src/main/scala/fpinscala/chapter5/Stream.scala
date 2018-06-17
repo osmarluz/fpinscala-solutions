@@ -117,4 +117,9 @@ object Stream {
     case x => Some(x, x)
     case _ => None
   })
+
+  val onesViaUnfold = unfold(1)(s => s match {
+    case 1 => Some(1, 1)
+    case _ => None
+  })
 }
