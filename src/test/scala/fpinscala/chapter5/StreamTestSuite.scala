@@ -202,4 +202,8 @@ class StreamTestSuite extends FunSuite {
   test("returns a list generated with the constant method defined for Stream using constantViaUnfold") {
     assert(Stream.constantViaUnfold(5).take(4).toList == List(5, 5, 5, 5))
   }
+
+  test("returns a list generated from the onesViaUnfold val defined for Stream") {
+    assert(Stream.onesViaUnfold.take(4).toList == List(1, 1, 1, 1))
+  }
 }
