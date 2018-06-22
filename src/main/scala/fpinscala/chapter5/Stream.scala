@@ -105,7 +105,7 @@ object Stream {
 
   def fibsViaUnfold = unfold((0,1)){ case (a,b) => Some(a, (b, a + b)) }
 
-  def fromViaUnfold(n: Int): Stream[Int] = unfold(n)(s => s match { case x => Some(x, x + 1) })
+  def fromViaUnfold(n: Int): Stream[Int] = unfold(n){ case x => Some(x, x + 1) }
 
   def constantViaUnfold[A](a: A): Stream[A] = unfold(a)(s => s match { case x => Some(x, x) })
 
