@@ -107,7 +107,7 @@ object Stream {
 
   def fromViaUnfold(n: Int): Stream[Int] = unfold(n){ case x => Some(x, x + 1) }
 
-  def constantViaUnfold[A](a: A): Stream[A] = unfold(a)(s => s match { case x => Some(x, x) })
+  def constantViaUnfold[A](a: A): Stream[A] = unfold(a){ case x => Some(x, x) }
 
   val onesViaUnfold = unfold(1)(s => s match { case 1 => Some(1, 1) })
 }
