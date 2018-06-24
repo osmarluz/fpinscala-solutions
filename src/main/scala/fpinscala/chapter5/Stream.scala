@@ -92,7 +92,7 @@ object Stream {
 
   def from(n: Int): Stream[Int] = cons(n, from(n + 1))
 
-  def fibs: Stream[Int] = {
+  val fibs: Stream[Int] = {
     def fibCalc(n1: Int, n2: Int): Stream[Int] = cons(n1, fibCalc(n2, n1 + n2))
 
     fibCalc(0, 1)
@@ -103,7 +103,7 @@ object Stream {
     case None => empty
   }
 
-  def fibsViaUnfold = unfold((0,1)){ case (a,b) => Some(a, (b, a + b)) }
+  val fibsViaUnfold = unfold((0,1)){ case (a,b) => Some(a, (b, a + b)) }
 
   def fromViaUnfold(n: Int): Stream[Int] = unfold(n){ case x => Some(x, x + 1) }
 
