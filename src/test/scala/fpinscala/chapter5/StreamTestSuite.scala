@@ -206,4 +206,15 @@ class StreamTestSuite extends FunSuite {
   test("returns a list generated from the onesViaUnfold val defined for Stream") {
     assert(Stream.onesViaUnfold.take(4).toList == List(1, 1, 1, 1))
   }
+
+  //Exercise 5.13
+
+  test("returns Empty when mapViaUnfold is applied to an empty stream") {
+    assert(Empty.mapViaUnfold((a: Int) => a + 1) == Empty)
+    assert(Stream().mapViaUnfold((a: Int) => a + 1) == Empty)
+  }
+
+  test("returns a stream with 1 added to each element using mapViaUnfold") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).mapViaUnfold((a: Int) => a + 1).toListRecursive == Stream(2, 3, 4, 5, 6, 7, 8, 9, 10, 11).toListRecursive)
+  }
 }
