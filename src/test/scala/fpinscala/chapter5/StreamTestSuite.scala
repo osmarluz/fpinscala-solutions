@@ -217,4 +217,16 @@ class StreamTestSuite extends FunSuite {
   test("returns a stream with 1 added to each element using mapViaUnfold") {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).mapViaUnfold((a: Int) => a + 1).toListRecursive == Stream(2, 3, 4, 5, 6, 7, 8, 9, 10, 11).toListRecursive)
   }
+
+  test("returns empty stream when takeViaUnfold is applied to an empty stream") {
+    assert(Empty.takeViaUnfold(1) == Empty)
+    assert(Stream().takeViaUnfold(1) == Empty)
+  }
+
+  test("returns the first n elements of the original stream when takeViaUnfold is applied to a non-empty stream") {
+    assert(Stream(1).takeViaUnfold(1).toListRecursive == Stream(1).toListRecursive)
+    assert(Stream(1).takeViaUnfold(10).toListRecursive == Stream(1).toListRecursive)
+    assert(Stream(1, 2, 3, 4, 5).takeViaUnfold(3).toListRecursive == Stream(1, 2, 3).toListRecursive)
+    assert(Stream(1, 2, 3, 4, 5).takeViaUnfold(10).toListRecursive == Stream(1, 2, 3, 4, 5).toListRecursive)
+  }
 }
