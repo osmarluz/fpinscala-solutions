@@ -229,4 +229,14 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5).takeViaUnfold(3).toListRecursive == Stream(1, 2, 3).toListRecursive)
     assert(Stream(1, 2, 3, 4, 5).takeViaUnfold(10).toListRecursive == Stream(1, 2, 3, 4, 5).toListRecursive)
   }
+
+  test("returns empty stream when takeWhileViaUnfold is applied to an empty stream") {
+    assert(Empty.takeWhileViaUnfold((n: Int) => n > 5) == Empty)
+    assert(Stream().takeWhileViaUnfold((n: Int) => n > 5) == Empty)
+  }
+
+  test("returns all starting elements of the original stream that match the given predicate using takeWhileViaUnfold") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhileViaUnfold((n: Int) => n > 5) == Empty)
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhileViaUnfold((n: Int) => n < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
+  }
 }
