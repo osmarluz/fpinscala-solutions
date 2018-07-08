@@ -239,4 +239,13 @@ class StreamTestSuite extends FunSuite {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhileViaUnfold((n: Int) => n > 5) == Empty)
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).takeWhileViaUnfold((n: Int) => n < 5).toListRecursive == Stream(1, 2, 3, 4).toListRecursive)
   }
+
+  test("returns Empty when zipWith is applied to an empty stream") {
+    assert(Empty.zipWith(Stream(1, 2, 3, 4))((a: Int, b: Int) => a + b) == Empty)
+    assert(Stream(1, 2, 3, 4).zipWith(Empty)((a: Int, b: Int) => a + b) == Empty)
+  }
+
+  test("returns a stream with the elements of the streams added pairwise using zipWith") {
+    assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).zipWith(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))(_ + _).toListRecursive == Stream(2, 4, 6, 8, 10, 12, 14, 16, 18, 20).toListRecursive)
+  }
 }
