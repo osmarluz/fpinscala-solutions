@@ -248,4 +248,20 @@ class StreamTestSuite extends FunSuite {
   test("returns a stream with the elements of the streams added pairwise using zipWith") {
     assert(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10).zipWith(Stream(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))(_ + _).toListRecursive == Stream(2, 4, 6, 8, 10, 12, 14, 16, 18, 20).toListRecursive)
   }
+
+  test("returns Stream(Some, Some) when zipAll is applied to a non-empty stream with a non-empty argument") {
+    assert(Stream(1, 2, 3, 4).zipAll(Stream(1, 2, 3, 4)).toListRecursive == Stream((Some(1), Some(1)), (Some(2), Some(2)), (Some(3), Some(3)), (Some(4), Some(4))).toListRecursive)
+  }
+
+  test("returns Stream(Some, None) when zipAll is applied to a non-empty stream with an empty argument") {
+    assert(Stream(1, 2, 3, 4).zipAll(Empty).toListRecursive == Stream((Some(1), None), (Some(2), None), (Some(3), None), (Some(4), None)).toListRecursive)
+  }
+
+  test("returns Stream(None, Some) when zipAll is applied to an empty stream with a non-empty argument") {
+    assert(Empty.zipAll(Stream(1, 2, 3, 4)).toListRecursive == Stream((None, Some(1)), (None, Some(2)), (None, Some(3)), (None, Some(4))).toListRecursive)
+  }
+
+  test("returns Stream(None, None) when zipAll is applied to an empty stream with an empty argument") {
+    assert(Empty.zipAll(Empty).toListRecursive == Stream().toListRecursive)
+  }
 }
